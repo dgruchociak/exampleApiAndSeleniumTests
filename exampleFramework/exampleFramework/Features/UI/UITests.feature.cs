@@ -76,11 +76,11 @@ namespace exampleFramework.Features.UI
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a user I want to open the Google Search page and click on first apple product")]
-        [NUnit.Framework.CategoryAttribute("FirstScenario")]
+        [NUnit.Framework.CategoryAttribute("UI")]
         public virtual void AsAUserIWantToOpenTheGoogleSearchPageAndClickOnFirstAppleProduct()
         {
             string[] tagsOfScenario = new string[] {
-                    "FirstScenario"};
+                    "UI"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user I want to open the Google Search page and click on first apple product", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
@@ -119,11 +119,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a user I want to open the Google Search page and click on random apple product" +
             "")]
-        [NUnit.Framework.CategoryAttribute("SecondScenario")]
+        [NUnit.Framework.CategoryAttribute("UI")]
         public virtual void AsAUserIWantToOpenTheGoogleSearchPageAndClickOnRandomAppleProduct()
         {
             string[] tagsOfScenario = new string[] {
-                    "SecondScenario"};
+                    "UI"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user I want to open the Google Search page and click on random apple product" +
                     "", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

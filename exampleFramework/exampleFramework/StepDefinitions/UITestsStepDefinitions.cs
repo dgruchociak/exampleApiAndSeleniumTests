@@ -7,13 +7,16 @@ namespace exampleFramework.StepDefinitions
     public class UITestsStepDefinitions
     {
         private IWebDriver driver;
+        private ScenarioContext _scenarioContext;
+
         private GoogleMainPage googleMainPage => new GoogleMainPage(driver);
         private GoogleSearchPage googleSearchPage => new GoogleSearchPage(driver);
 
 
-        public UITestsStepDefinitions()
+        public UITestsStepDefinitions(ScenarioContext scenarioContext)
         {
-            driver = (IWebDriver)ScenarioContext.Current["driver"];
+            _scenarioContext = scenarioContext;
+            driver = (IWebDriver)scenarioContext["driver"];
         }
 
         [Given(@"User opens the google")]

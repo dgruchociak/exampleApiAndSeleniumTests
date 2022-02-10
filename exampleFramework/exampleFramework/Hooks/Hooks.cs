@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using exampleFramework.Drivers;
+using exampleFramework.Support;
 
 namespace exampleFramework.Hooks
 {
@@ -7,15 +8,28 @@ namespace exampleFramework.Hooks
     public sealed class Hooks
     {
         private IWebDriver driver;
+        private ScenarioContext _scenarioContext;
 
-        [BeforeScenario]
-        public void BeforeScenario()
+        public Hooks(ScenarioContext scenarioContext)
         {
-            driver = DriverFactory.ReturnDriver(DriverType.Chrome);
-            ScenarioContext.Current["driver"] = driver;
+            _scenarioContext = scenarioContext;
         }
 
-        [AfterScenario]
+        [BeforeScenario("UI")]
+        public void BeforeScenarioUI()
+        {
+            driver = DriverFactory.ReturnDriver(DriverType.Chrome);
+            _scenarioContext["driver"] = driver;
+        }
+
+        [BeforeScenario("API")]
+        public void BeforeScenarioAPI()
+        {
+            var api = new APIHelper();
+            api.DeleteAllBoards();
+        }
+
+        [AfterScenario("UI")]
         public void AfterScenario()
         {
             driver.Close();

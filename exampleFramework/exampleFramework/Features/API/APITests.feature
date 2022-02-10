@@ -2,8 +2,14 @@
 
 logowanie trello plus utworzenie board + utworzenie card
 
-@FirstScenario
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+@API
+Scenario: As a user I want to create new board
+	Given User create a new board through the api
+	Then the board is successfully created
+
+@API
+Scenario: As a user I want to create new card
+	Given User create a new board through the api
+		And User create a new list through the api
+		And User create a new card through the api
+	Then the card is successfully created
