@@ -8,25 +8,26 @@ namespace exampleFramework.Hooks
     public sealed class Hooks
     {
         private IWebDriver driver;
-        private ScenarioContext _scenarioContext;
+        private ScenarioContext scenarioContext;
+        private APIHelper apiHelper;
 
         public Hooks(ScenarioContext scenarioContext)
         {
-            _scenarioContext = scenarioContext;
+            this.apiHelper = new APIHelper();
+            scenarioContext = scenarioContext;
         }
 
         [BeforeScenario("UI")]
         public void BeforeScenarioUI()
         {
             driver = DriverFactory.ReturnDriver(DriverType.Chrome);
-            _scenarioContext["driver"] = driver;
+            scenarioContext["driver"] = driver;
         }
 
         [BeforeScenario("API")]
         public void BeforeScenarioAPI()
         {
-            var api = new APIHelper();
-            api.DeleteAllBoards();
+            apiHelper.DeleteAllBoards();
         }
 
         [AfterScenario("UI")]

@@ -1,4 +1,4 @@
-﻿namespace TrelloCoreTest.DataEntities
+﻿namespace exampleFramework.DataEntities
 {
     public class TrelloList
     {

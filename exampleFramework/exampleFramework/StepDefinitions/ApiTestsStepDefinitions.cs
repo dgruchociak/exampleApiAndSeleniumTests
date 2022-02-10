@@ -7,48 +7,46 @@ namespace exampleFramework.StepDefinitions
     public class ApiTestsStepDefinitions
     {
         private ScenarioContext scenarioContext;
+        private APIHelper apiHelper;
 
         public ApiTestsStepDefinitions(ScenarioContext scenarioContext)
         {
+            this.apiHelper = new APIHelper();
             this.scenarioContext = scenarioContext;
         }
 
         [Given(@"User create a new board through the api")]
-        public void GivenUserCreateANewBoardThroughTheApi()
+        public async Task GivenUserCreateANewBoardThroughTheApi()
         {
-            var api = new APIHelper();
-            scenarioContext["boardName"] = GetRandomName("boardName");
-            api.CreateBoard(scenarioContext["boardName"].ToString());
+            var board = await apiHelper.CreateBoardAsync(GetRandomName("boardName"));
+            scenarioContext["boardId"] = board.id;
         }
 
         [Given(@"User create a new list through the api")]
-        public void GivenUserCreateANewListThroughTheApi()
+        public async Task GivenUserCreateANewListThroughTheApi()
         {
-            var api = new APIHelper();
-            scenarioContext["listName"] = GetRandomName("listName");
-            api.CreateList(scenarioContext["boardName"].ToString(), scenarioContext["listName"].ToString());
+            var list = await apiHelper.CreateListAsync(scenarioContext["boardId"].ToString(), GetRandomName("listName"));
+            scenarioContext["listId"] = list.id;
         }
 
         [Given(@"User create a new card through the api")]
-        public void GivenUserCreateANewCardThroughTheApi()
+        public async Task GivenUserCreateANewCardThroughTheApi()
         {
-            var api = new APIHelper();
             scenarioContext["cardName"] = GetRandomName("cardName");
-            api.CreateCard(scenarioContext["boardName"].ToString(), scenarioContext["listName"].ToString(), scenarioContext["cardName"].ToString());
+            var card = await apiHelper.CreateCardAsync(scenarioContext["listId"].ToString(), scenarioContext["cardName"].ToString());
+            scenarioContext["cardId"] = card.id;
         }
 
         [Then(@"the board is successfully created")]
-        public void ThenTheBoardIsSuccessfullyCreated()
+        public async Task ThenTheBoardIsSuccessfullyCreated()
         {
-            var api = new APIHelper();
-            Assert.IsTrue(api.IsBoardCreated(api.GetBoardIdByName(scenarioContext["boardName"].ToString())));
+            Assert.IsTrue(await apiHelper.IsBoardCreatedAsync(scenarioContext["boardId"].ToString()));
         }
 
         [Then(@"the card is successfully created")]
-        public void ThenTheCardIsSuccessfullyCreated()
+        public async Task ThenTheCardIsSuccessfullyCreated()
         {
-            var api = new APIHelper();
-            Assert.IsTrue(api.IsCardCreated(scenarioContext["boardName"].ToString(), scenarioContext["listName"].ToString(), scenarioContext["cardName"].ToString()));
+            Assert.IsTrue(await apiHelper.IsCardCreated(scenarioContext["listId"].ToString(), scenarioContext["cardId"].ToString()));
         }
 
         private string GetRandomName(string name)
