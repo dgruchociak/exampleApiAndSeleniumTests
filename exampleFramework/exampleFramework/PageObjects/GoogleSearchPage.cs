@@ -30,6 +30,7 @@ namespace exampleFramework.PageObjects
             return list[ele];
         }
         
+        //assert w Steps jako krok
         private void isNewWindowOpened(string windowTitle)
         {
             string newWindow = driver.CurrentWindowHandle;

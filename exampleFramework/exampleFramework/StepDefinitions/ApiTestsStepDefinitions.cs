@@ -27,6 +27,7 @@ namespace exampleFramework.StepDefinitions
         {
             var list = await apiHelper.CreateListAsync(scenarioContext["boardId"].ToString(), GetRandomName("listName"));
             scenarioContext["listId"] = list.id;
+            //scenarioContext.Add()
         }
 
         [Given(@"User create a new card through the api")]

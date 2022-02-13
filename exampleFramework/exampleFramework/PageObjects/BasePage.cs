@@ -36,6 +36,7 @@ namespace exampleFramework.PageObjects
             }
         }
 
+        //zwrocic title string i pozniej asercje
         public void AssertTitle(string title)
         {
             string pageTitle = driver.Title;
