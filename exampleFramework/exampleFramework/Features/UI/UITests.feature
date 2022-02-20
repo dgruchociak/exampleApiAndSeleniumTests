@@ -6,11 +6,11 @@ wpisać Apple w google searchboxa i zrobić dwie metody na wybieranie produktów
 @UI
 Scenario: As a user I want to open the Google Search page and click on first apple product
 	Given User opens the google
-	When User searches for 'apple' phrase
+	When User searches for "apple" phrase
 	Then User opens the "first" item
 
 @UI
 Scenario: As a user I want to open the Google Search page and click on random apple product
 	Given User opens the google
-	When User searches for 'apple' phrase
+	When User searches for "apple" phrase
 	Then User opens the "random" item

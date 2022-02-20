@@ -36,11 +36,9 @@ namespace exampleFramework.PageObjects
             }
         }
 
-        //zwrocic title string i pozniej asercje
-        public void AssertTitle(string title)
+        public string getTitle()
         {
-            string pageTitle = driver.Title;
-            pageTitle.Should().Be(title);
+            return driver.Title;
         }
     }
 }

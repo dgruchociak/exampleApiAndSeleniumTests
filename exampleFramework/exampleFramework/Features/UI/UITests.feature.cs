@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("User opens the google", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When("User searches for \'apple\' phrase", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User searches for \"apple\" phrase", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
  testRunner.Then("User opens the \"first\" item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("User opens the google", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.When("User searches for \'apple\' phrase", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User searches for \"apple\" phrase", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
  testRunner.Then("User opens the \"random\" item", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

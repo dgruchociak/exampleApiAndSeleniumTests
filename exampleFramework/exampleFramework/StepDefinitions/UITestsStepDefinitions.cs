@@ -1,4 +1,5 @@
 using exampleFramework.PageObjects;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace exampleFramework.StepDefinitions
@@ -25,7 +26,7 @@ namespace exampleFramework.StepDefinitions
             googleMainPage.Open();
         }
 
-        [When(@"User searches for '([^']*)' phrase")]
+        [When(@"User searches for ""(.*)"" phrase")]
         public void WhenUserSearchesForPhrase(string text)
         {
             googleMainPage.SearchFor(text);
@@ -37,13 +38,19 @@ namespace exampleFramework.StepDefinitions
             switch (itemName)
             {
                 case "first":
+                    string name = googleSearchPage.getTitle();
                     googleSearchPage.clickOnFirstProduct();
+                    Assert.IsTrue(googleSearchPage.getNewWindowTitle() != name);
                     break;
                 case "random":
+                    name = googleSearchPage.getTitle();
                     googleSearchPage.clickOnRandomProduct();
+                    Assert.IsTrue(googleSearchPage.getNewWindowTitle() != name);
                     break;
                 default:
+                    name = googleSearchPage.getTitle();
                     googleSearchPage.clickOnFirstProduct();
+                    Assert.IsTrue(googleSearchPage.getNewWindowTitle() != name);
                     break;
             }
             

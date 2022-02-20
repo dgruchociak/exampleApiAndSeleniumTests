@@ -7,15 +7,13 @@ namespace exampleFramework.PageObjects
         public GoogleMainPage(IWebDriver driver) : base(driver){
         }
 
-        private string pageTitle = "Google";
-        public IWebElement acceptButton => wait.Until(e => driver.FindElement(By.CssSelector("#L2AGLb")));
-        public IWebElement searchInput => wait.Until(e => driver.FindElement(By.CssSelector("input.gLFyf.gsfi")));
+        private IWebElement acceptButton => wait.Until(e => driver.FindElement(By.CssSelector("#L2AGLb")));
+        private IWebElement searchInput => wait.Until(e => driver.FindElement(By.CssSelector("input.gLFyf.gsfi")));
 
         public override void Open()
         {
             base.Open();
             acceptButton.Click();
-            AssertTitle(pageTitle);
         }
 
         public GoogleSearchPage SearchFor(string searchText)
