@@ -26,8 +26,8 @@ namespace exampleFramework.StepDefinitions
         public async Task GivenUserCreateANewListThroughTheApi()
         {
             var list = await apiHelper.CreateListAsync(scenarioContext["boardId"].ToString(), GetRandomName("listName"));
-            scenarioContext["listId"] = list.id;
-            //scenarioContext.Add()
+            //scenarioContext["listId"] = list.id;
+            scenarioContext.Add("listId", list.id);
         }
 
         [Given(@"User create a new card through the api")]
@@ -36,6 +36,13 @@ namespace exampleFramework.StepDefinitions
             scenarioContext["cardName"] = GetRandomName("cardName");
             var card = await apiHelper.CreateCardAsync(scenarioContext["listId"].ToString(), scenarioContext["cardName"].ToString());
             scenarioContext["cardId"] = card.id;
+        }
+
+        [Given(@"User add a member to card through the api")]
+        public async Task GivenUserAddAMemberToCardThroughTheApi()
+        {
+            scenarioContext["memberId"] = "62015769c051f85bba98df4e";
+            await apiHelper.AddMemberAsync(scenarioContext["cardId"].ToString(), scenarioContext["memberId"].ToString());
         }
 
         [Then(@"the board is successfully created")]

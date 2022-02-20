@@ -44,6 +44,13 @@ namespace exampleFramework.Support
             return JsonConvert.DeserializeObject<Card>(response.Content);
         }
 
+        public async Task AddMemberAsync(string cardId, string memberId)
+        {
+            var request = new RestRequest($"1/cards/{cardId}/IdMembers/?value={memberId}&{AuthenticationString()}", Method.Post);
+            var response = await client.ExecuteAsync(request);
+            response.EnsureStatusSuccess();
+        }
+
         public async Task<List<Board>>GetAllBoardsAsync()
         { 
             var request = new RestRequest($"/1/members/me/boards/?{AuthenticationString()}",
