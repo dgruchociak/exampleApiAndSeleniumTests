@@ -130,7 +130,5 @@ namespace exampleFramework.Support
                 client.ExecuteAsync(request);
             }
         }
-
-
     }
 }

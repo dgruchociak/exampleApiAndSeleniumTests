@@ -8,7 +8,7 @@ namespace exampleFramework.PageObjects
         }
 
         private IWebElement acceptButton => wait.Until(e => driver.FindElement(By.CssSelector("#L2AGLb")));
-        private IWebElement searchInput => wait.Until(e => driver.FindElement(By.CssSelector("input.gLFyf.gsfi")));
+        private IWebElement searchInput => wait.Until(e => driver.FindElement(By.CssSelector("input.gLFyf")));
 
         public override void Open()
         {

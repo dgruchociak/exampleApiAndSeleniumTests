@@ -53,8 +53,6 @@ namespace exampleFramework.StepDefinitions
                     Assert.IsTrue(googleSearchPage.getNewWindowTitle() != name);
                     break;
             }
-            
         }
-
     }
 }
