@@ -59,7 +59,6 @@ namespace exampleFramework.StepDefinitions
 
         private string GetRandomName(string name)
         {
-            Random rnd = new Random();
             return name + DateTime.Now.ToString("yyyy-dd-M-HH-mm-ss");
         }
     }

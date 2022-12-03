@@ -20,7 +20,7 @@ namespace exampleFramework.Support
             return $"key={configuration.GetConfiguration()["api:key"]}&token={configuration.GetConfiguration()["api:token"]}";
         }
 
-        public async Task<Board> CreateBoardAsync(string name)
+        public async Task<Board>CreateBoardAsync(string name)
         {
             var request = new RestRequest($"/1/boards/?name={Uri.EscapeUriString(name)}&defaultLabels=true&defaultLists=false&keepFromSource=none&prefs_permissionLevel=private&prefs_voting=disabled&prefs_comments=members&prefs_invitations=members&prefs_selfJoin=true&prefs_cardCovers=true&prefs_background=blue&prefs_cardAging=regular&{AuthenticationString()}", Method.Post);
             var response = await client.ExecuteAsync(request);
@@ -63,7 +63,7 @@ namespace exampleFramework.Support
             return JsonConvert.DeserializeObject<List<Board>>(response.Content).ToList();
         }
 
-        public async Task<List<TrelloList>> GetAllListsInBoardAsync(string boardName)
+        public async Task<List<TrelloList>>GetAllListsInBoardAsync(string boardName)
         {
             var request = new RestRequest($"/1/boards/{GetBoardIdByNameAsync(boardName)}/lists?{AuthenticationString()}",
                 Method.Get)
@@ -76,7 +76,7 @@ namespace exampleFramework.Support
             return JsonConvert.DeserializeObject<List<TrelloList>>(response.Content);
         }
 
-        public async Task<List<Card>> GetAllCardsInListAsync(string listId)
+        public async Task<List<Card>>GetAllCardsInListAsync(string listId)
         {
             var request = new RestRequest($"/1/lists/{listId}/cards?{AuthenticationString()}",
                 Method.Get)
@@ -96,27 +96,27 @@ namespace exampleFramework.Support
             return board.id;
         }
 
-        public async Task<string> GetListIdByNameAsync(string boardName, string listName)
+        public async Task<string>GetListIdByNameAsync(string boardName, string listName)
         {
             var allLists = await GetAllListsInBoardAsync(boardName);
             var list = allLists.Single(b => b.name.Equals(listName, StringComparison.InvariantCultureIgnoreCase));
             return list.id;
         }
 
-        public async Task<string> GetCardIdByNameAsync(string listId, string cardName)
+        public async Task<string>GetCardIdByNameAsync(string listId, string cardName)
         {
             var allCards = await GetAllCardsInListAsync(listId);
             var card = allCards.Single(b => b.name.Equals(cardName, StringComparison.InvariantCultureIgnoreCase));
             return card.id;
         }
 
-        public async Task<bool> IsBoardCreatedAsync(string boardId)
+        public async Task<bool>IsBoardCreatedAsync(string boardId)
         {
             var boards = await GetAllBoardsAsync();
             return boards.Any((b => b.id.Equals(boardId, StringComparison.InvariantCultureIgnoreCase)));
         }
 
-        public async Task<bool> IsCardCreated(string listId, string cardId)
+        public async Task<bool>IsCardCreated(string listId, string cardId)
         {
             var cards = await GetAllCardsInListAsync(listId);
             return cards.Any((b => b.id.Equals(cardId, StringComparison.InvariantCultureIgnoreCase)));
